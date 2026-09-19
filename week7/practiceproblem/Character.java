@@ -1,0 +1,41 @@
+public class Character {
+    private final int maxHealth;
+    private int health;
+
+    public Character(int maxHealth) {
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;
+    }
+
+    public void takeDamage(int amount) {
+        if (amount <= 0) {
+            return;
+        }
+        health = Math.max(0, health - amount);
+    }
+
+    public void heal(int amount) {
+        if (amount <= 0) {
+            return;
+        }
+        if (amount >= maxHealth - health) {
+            health = maxHealth;
+        } else {
+            health += amount;
+        }
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public static void main(String[] args) {
+        Character c = new Character(100);
+        c.takeDamage(30);
+        System.out.println("health = " + c.getHealth());
+        c.heal(50);
+        System.out.println("health = " + c.getHealth());
+        c.takeDamage(150);
+        System.out.println("health = " + c.getHealth());
+    }
+}
